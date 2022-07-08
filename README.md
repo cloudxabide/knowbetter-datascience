@@ -1,2 +1,6 @@
 # knowbetter-datascience
-My journey of learning Data Science
+Know Better
+
+An introduction to learning Data Science
+
+

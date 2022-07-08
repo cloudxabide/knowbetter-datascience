@@ -21,4 +21,10 @@ I tend to focus on the FOSS solutions first, as you will see.  That said, I am n
 | Big DL |  | Deep Learning | | |
 | ggplot2 | R- library | R Data Visualization | | 
 
-
+R
+* Statistical programming language
+* for data processing and manipulation
+* Statistical, Data 
+* can use data from: flat files, Databases, Web, Stats software
+* can do visualization
+* RStudio - IDE to run R
