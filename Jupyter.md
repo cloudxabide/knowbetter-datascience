@@ -32,6 +32,13 @@ https://github.com/containers/podman/issues/9002
 mkdir ${HOME}/Notebooks; cd $_
 git clone https://github.com/NVIDIA-AI-IOT/jetbot.git
 
+podman run -it --rm -p 8888:8888 \
+    -v "${HOME}/Notebooks":/home/jovyan/work:Z,U --user $uid:$gid \
+    docker.io/jupyter/r-notebook:6b49f3337709
+```
+
+# The following is what was recommended, but does not work for me
+```
 uid=1000
 gid=100
 subuidSize=$(( $(podman info --format "{{ range .Host.IDMappings.UIDMap }}+{{.Size }}{{end }}" ) - 1 ))
@@ -42,6 +49,8 @@ podman run -it --rm -p 8888:8888 \
     --uidmap $uid:0:1 --uidmap 0:1:$uid --uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
     --gidmap $gid:0:1 --gidmap 0:1:$gid --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
     docker.io/jupyter/r-notebook:6b49f3337709
+
+
 
 
 ```
