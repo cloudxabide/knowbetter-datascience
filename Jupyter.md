@@ -31,9 +31,25 @@ https://github.com/containers/podman/issues/9002
 ```
 mkdir ${HOME}/Notebooks; cd $_
 git clone https://github.com/NVIDIA-AI-IOT/jetbot.git
-
 podman run -it --rm -p 8888:8888 \
-    -v "${HOME}/Notebooks":/home/jovyan/work:Z,U --user $uid:$gid \
+    -v "${HOME}/Notebooks":/home/jovyan/Notebooks:Z,U \
+    -v "${HOME}/work":/home/jovyan/work:Z,U \
+    --user $uid:$gid \
+    docker.io/jupyter/r-notebook:6b49f3337709
+```
+
+# Testing
+So, you need to know what the UID/GID of the user in the container is for this approach.  In this case, it's UID/GID = 1000/100 for joyvan/users
+
+```
+MYUID=1000
+MYGID=100
+NOTEBOOKS_PATH=/home/jradtke/Repositories/Public/github.com/letthedataconfess/
+WORK_PATH=/home/jradtke/work
+podman run -it --rm -p 8888:8888 \
+    -v "${NOTEBOOKS_PATH}":/home/jovyan/Notebooks:Z,U \
+    -v "${HOME}/work":/home/jovyan/work:Z,U \
+    --user $MYUID:$MYGID \
     docker.io/jupyter/r-notebook:6b49f3337709
 ```
 
