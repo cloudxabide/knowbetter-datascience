@@ -1,11 +1,6 @@
 # Jupyter Foo
 STATUS:  Work In Progress
 
-## Install/Use using pip
-```
-pip install jupyterlab
-```
-
 ## Run Jupyter as a container
 At this point, I like the container option best
 ```
@@ -38,9 +33,8 @@ podman run -it --rm -p 8888:8888 \
     docker.io/jupyter/r-notebook:6b49f3337709
 ```
 
-# Testing
+### Testing
 So, you need to know what the UID/GID of the user in the container is for this approach.  In this case, it's UID/GID = 1000/100 for joyvan/users
-
 ```
 MYUID=1000
 MYGID=100
@@ -53,7 +47,7 @@ podman run -it --rm -p 8888:8888 \
     docker.io/jupyter/r-notebook:6b49f3337709
 ```
 
-# The following is what was recommended, but does not work for me
+### The following is what was recommended, but does not work for me
 ```
 uid=1000
 gid=100
@@ -65,12 +59,8 @@ podman run -it --rm -p 8888:8888 \
     --uidmap $uid:0:1 --uidmap 0:1:$uid --uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
     --gidmap $gid:0:1 --gidmap 0:1:$gid --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
     docker.io/jupyter/r-notebook:6b49f3337709
-
-
-
-
 ```
-browse to  
+browse to the URL listed in the terminal once the command had finished with its output
 http://127.0.0.1:10000/lab
 
 
@@ -81,3 +71,10 @@ docker run -p 8888:8888 \
            --name jupyter \
            -d jupyter/datascience-notebook:latest
 ```
+
+## Install/Use using pip
+```
+pip install jupyterlab
+```
+
+## References

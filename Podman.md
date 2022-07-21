@@ -11,8 +11,7 @@ I am hoping this doc is not really needed.
 # Still trying to figure out which part(s) of this is necessary
 # [ ! -f /home/$USER/.config/containers/storage.conf ] && { echo "runroot = /run/user/$NEWUID"; }
 rm -rf /home/$USER/.local/share/containers/storage
-# Last ditch
-# podman system reset
+podman system reset
 ```
 
 ## changing UID (as a reference)
