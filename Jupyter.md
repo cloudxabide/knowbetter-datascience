@@ -29,8 +29,16 @@ git clone https://github.com/NVIDIA-AI-IOT/jetbot.git
 podman run -it --rm -p 8888:8888 \
     -v "${HOME}/Notebooks":/home/jovyan/Notebooks:Z,U \
     -v "${HOME}/work":/home/jovyan/work:Z,U \
-    --user $uid:$gid \
+    --user $MYUID:$MYGID\
     docker.io/jupyter/r-notebook:6b49f3337709
+
+# for MacOS
+podman run -it --rm -p 8888:8888 \
+    -v "${HOME}/Notebooks":/home/jovyan/Notebooks \
+    -v "${HOME}/work":/home/jovyan/work \
+    --user $MYUID:$MYGID\
+    docker.io/jupyter/r-notebook:6b49f3337709
+
 ```
 
 ### Testing
